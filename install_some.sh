@@ -52,6 +52,8 @@ sudo apt-get install -y \
     curl \
     wget \
     g++ \
+    zip \
+    unzip \
     automake \
     autoconf \
     autoconf-archive \
