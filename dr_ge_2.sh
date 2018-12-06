@@ -15,19 +15,19 @@ echo
 
 set -e
 set -x
-set(TORCH_BUILD_DIR "~/torch/lib")
+set TORCH_BUILD_DIR = "~/torch/lib"
 
 # Find the include files
-set(TORCH_TH_INCLUDE_DIR "${TORCH_BUILD_DIR}/include/TH")
-set(TORCH_THC_INCLUDE_DIR "${TORCH_BUILD_DIR}/include/THC")
-set(TORCH_THC_UTILS_INCLUDE_DIR "$ENV{HOME}/pytorch/torch/lib/THC")
+set TORCH_TH_INCLUDE_DIR = "${TORCH_BUILD_DIR}/include/TH"
+set TORCH_THC_INCLUDE_DIR = "${TORCH_BUILD_DIR}/include/THC"
+set TORCH_THC_UTILS_INCLUDE_DIR = "$ENV{HOME}/pytorch/torch/lib/THC"
 
-set(Torch_INSTALL_INCLUDE "${TORCH_BUILD_DIR}/include" ${TORCH_TH_INCLUDE_DIR} ${TORCH_THC_INCLUDE_DIR} ${TORCH_THC_UTILS_INCLUDE_DIR})
+set Torch_INSTALL_INCLUDE = "${TORCH_BUILD_DIR}/include" ${TORCH_TH_INCLUDE_DIR} ${TORCH_THC_INCLUDE_DIR} ${TORCH_THC_UTILS_INCLUDE_DIR}
 
 # Find the libs. We need to find libraries one by one.
-set(TORCH_LIB_HINTS "${TORCH_BUILD_DIR}" "/usr/local/lib" "/root/torch/install/lib")
-find_library(THC_LIBRARIES NAMES THC THC.1 PATHS ${TORCH_BUILD_DIR} PATH_SUFFIXES lib)
-find_library(TH_LIBRARIES NAMES TH TH.1 PATHS ${TORCH_BUILD_DIR} PATH_SUFFIXES lib)
+set TORCH_LIB_HINTS = "${TORCH_BUILD_DIR}" "/usr/local/lib" "/root/torch/install/lib"
+find_library (THC_LIBRARIES NAMES THC THC.1 PATHS ${TORCH_BUILD_DIR} PATH_SUFFIXES lib)
+find_library (TH_LIBRARIES NAMES TH TH.1 PATHS ${TORCH_BUILD_DIR} PATH_SUFFIXES lib)
 
 if [[ $(arch) != 'x86_64' ]]; then
     echo "x86_64 required" >&2
